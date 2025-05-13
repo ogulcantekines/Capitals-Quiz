@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 1. Basic Page Settings -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital City Quiz</title>
+
+  <!-- 2. Style & Font -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- 3. Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+
+<body id="app">
+
+  <!-- 4. Audio Effects (Correct / Incorrect) -->
+  <audio id="victorySound" src="/sounds/correct.mp3"></audio>
+  <audio id="gameoverSound" src="/sounds/incorrect.mp3"></audio>
+
+  <!-- 5. Quiz Form and Card Container -->
+  <form class="container" id="quizForm" action="/submit" method="post">
+
+    <!-- 6. Player Info and Score Display -->
+    <div class="horizontal-container">
+      <h3>
+        Total Score:
+        <span id="score">
+          <%= typeof totalScore !== 'undefined' ? totalScore : "0" %>
+        </span>
+        <h3>
+          Username: <%= username %><br>
+          High Score: <%= highScore %> <br>
+          Difficulty: <%= currentDifficulty %> <br>
+        </h3>
+      </h3>
+    </div>
+
+    <!-- 7. Question Heading (Country Name) -->
+    <h1 id="countryName">
+      <%= question.country %>
+    </h1>
+
+    <!-- 8. Correct Answer Feedback Container -->
+    <div id="answerText" style="text-align: center; margin-top: 10px;"></div>
+
+    <!-- 9. Answer Input Field -->
+    <div class="answer-container" id="answerContainer">
+      <input type="text" name="answer" id="userInput" placeholder="Enter the capital" autofocus autocomplete="off">
+    </div>
+
+    <!-- 10. Submit/Restart Button + Icons -->
+    <button type="submit" id="btn">
+      <%= wasCorrect === false ? 'Restart' : 'Submit' %>
+      <% if (wasCorrect === true) { %>
+        <span class="checkmark">✔</span>
+      <% } else if (wasCorrect === false) { %>
+        <span class="cross" id="error">✖</span>
+      <% } %>
+    </button>
+  </form>
+
+  <!-- 11. Logout Button -->
+  <form action="/logout" method="get" style="position: absolute; top: 20px; right: 20px;">
+    <button type="submit" class="logout-btn">Logout</button>
+  </form>
+
+  <!-- 12. JavaScript: Answer Result Effects & Routing -->
+  <script>
+    window.onload = function () {
+      var wasCorrect = "<%= wasCorrect %>";
+      var correctAnswer = "<%= correctAnswer %>";
+      const form = document.getElementById("quizForm");
+
+      if (wasCorrect === "true") {
+        // 12.a: If the answer is correct → trigger confetti and sound
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+        const sound = document.getElementById("victorySound");
+        sound.play();
+      }
+
+      if (wasCorrect === "false") {
+        // 12.b: If the answer is incorrect → shake form, play sound, show correct answer
+        form.classList.add("shake");
+        setTimeout(() => {
+          form.classList.remove("shake");
+        }, 500);
+
+        const countryName = document.getElementById("countryName");
+        countryName.innerText = "YOU LOST!";
+        countryName.classList.add("big-bounce");
+
+        const sound = document.getElementById("gameoverSound");
+        sound.play();
+
+        const answerDiv = document.getElementById("answerText");
+        answerDiv.innerHTML =
+          `<p class="slide-up" style="font-size: 20px; color: crimson;">Correct Answer: ${correctAnswer}</p>`;
+
+        document.getElementById("userInput").style.display = "none";
+        document.getElementById("btn").innerText = "Restart";
+
+        // 12.c: On submit after loss → redirect to /restart
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          window.location.href = "/restart";
+        });
+      }
+    };
+
+    // Prevent going back after logout
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+      window.location.href = "/logout";
+    };
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+/* === 1. General Body Styling === */
+body {
+  background-image: url(../images/quiz2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Poppins', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  
+}
+
+/* === 2. Main Container Styling === */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  max-width: 50%;
+  height: 400px;
+  margin: 10% auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding-top: 10px;
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #e0e0e0;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 0 24px rgba(0, 229, 255, 0.1);
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow:
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 40px #00f0ff,
+    0 0 80px #00f0ff20;
+  border: 2px solid #00f0ff;
+  backdrop-filter: blur(8px);
+  transition: all 0.4s ease;
+  color: white;
+}
+
+/* === 2.a Container hover effect === */
+.container:hover {
+  box-shadow:
+    0 0 20px #00f0ff,
+    0 0 40px #00f0ff,
+    0 0 80px #00f0ff,
+    0 0 120px #00f0ff40;
+}
+
+/* === 3. Difficulty Dropdown Styling === */
+#difficultySelect {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: none;
+  background-color: #0b132b;
+  color: white;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 60px;
+}
+
+/* === 4. Text Headings === */
+h1 {
+  text-align: center;
+}
+
+h3 {
+  margin: 0;
+}
+
+/* === 5. Answer Input Area === */
+.answer-container {
+  width: 100%;
+  text-align: center;
+}
+
+#userInput {
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin: 15px auto;
+  border-radius: 6px;
+  border: 2px solid #00e5ff;
+  background-color: transparent;
+  color: #fff;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+#userInput::placeholder {
+  color: #888;
+}
+
+#userInput:focus {
+  border-color: #1de9b6;
+  box-shadow: 0 0 12px #1de9b6;
+}
+
+#username {
+  padding: 10px;
+  margin-bottom: 18px;
+  font-size: 16px;
+  width: 80%;
+  border: 2px solid #00e5ff;
+  border-radius: 6px;
+  background-color: transparent;
+  color: #e0e0e0;
+  text-align: center;
+  outline: none;
+  transition: 0.3s ease;
+  box-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
+}
+
+/* === 6. Buttons === */
+button {
+  background-color: #22cde0;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  padding: 12px 28px;
+  font-size: 16px;
+  box-shadow: 0 0 10px #00e5ff;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+button:hover {
+  background-color: #1de9b6;
+  box-shadow: 0 0 16px #1de9b6;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* === 7. Score Section === */
+.horizontal-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#result {
+  text-align: center;
+  font-size: 24px;
+}
+
+/* === 8. Correct / Incorrect Icons === */
+.checkmark {
+  color: transparent;
+  animation: checkmark 0.5s ease;
+}
+
+.cross {
+  color: transparent;
+  animation: cross 0.5s ease;
+}
+
+@keyframes checkmark {
+  0% { color: transparent; }
+  100% { color: green; }
+}
+
+@keyframes cross {
+  0% { color: transparent; }
+  100% { color: red; }
+}
+
+/* === 9. Animations === */
+/* YOU LOST heading animation */
+.big-bounce {
+  animation: popUp 0.6s ease-out forwards;
+  font-size: 3rem;
+  color: crimson;
+  font-weight: bold;
+  text-shadow: 2px 2px black;
+}
+
+@keyframes popUp {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Slide-up animation for correct answer display */
+.slide-up {
+  animation: slideUp 1s ease-out forwards;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Shake animation for wrong answer */
+@keyframes shake {
+  0% { transform: translate(1px, 1px); }
+  20% { transform: translate(-1px, 0px); }
+  40% { transform: translate(2px, 1px); }
+  60% { transform: translate(0px, -1px); }
+  80% { transform: translate(-2px, 0px); }
+  100% { transform: translate(1px, 1px); }
+}
+
+.shake {
+  animation: shake 0.3s linear 1;
+}

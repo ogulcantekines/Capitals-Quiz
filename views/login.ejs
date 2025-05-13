@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- 1. Basic page setup -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital City Quiz</title>
+
+  <!-- 2. Stylesheet link -->
+  <link rel="stylesheet" href="/styles/main.css">
+</head>
+
+<body id="app">
+
+  <!-- 3. Login form: takes username and difficulty -->
+  <form class="container" id="quizForm" action="/login" method="post">
+    <h2 style="text-align: center;">Enter your username to start the quiz:</h2>
+
+    <!-- 3.a Username input -->
+    <input type="text" name="username" id="userInput" placeholder="Your name" required>
+
+    <!-- 3.b Difficulty selector -->
+    <select name="difficulty" id="difficultySelect" required>
+      <option value="">Choose Difficulty</option>
+      <option value="easy">Easy</option>
+      <option value="hard">Hard</option>
+    </select>
+
+    <!-- 3.c Submit button -->
+    <button type="submit">Start</button>
+  </form>
+
+  <!-- 4. Back navigation prevention: force logout if coming back from history -->
+  <script>
+    if (performance.navigation.type === 2) {
+      window.location.href = "/logout";
+    }
+  </script>
+
+</body>
+
+</html>
