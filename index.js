@@ -2,24 +2,19 @@
 // 1. MODULE IMPORTS
 // ============================
 
+import dotenv from "dotenv";
+dotenv.config();
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-
-if (process.env.DATABASE_URL === undefined) {
-  console.log("DATABASE_URL not set. Are you running locally?");
-}
 
 // ============================
 // 2. DATABASE CONNECTION
 // ============================
 const db = new pg.Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ssl: process.env.LOCAL ? false : { rejectUnauthorized: false }
 });
-
 db.connect();
 
 // ============================
