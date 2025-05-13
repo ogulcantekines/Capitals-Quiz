@@ -7,7 +7,9 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
-console.log("Connected to DB via Render!")
+console.log("Connected to DB via Render!");
+console.log("DB URL from env:", process.env.DATABASE_URL);
+
 
 // ============================
 // 2. DATABASE CONNECTION
