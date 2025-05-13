@@ -12,8 +12,11 @@ import pg from "pg";
 // ============================
 const db = new pg.Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.LOCAL ? false : { rejectUnauthorized: false }
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
+
 db.connect();
 
 // ============================
