@@ -1,20 +1,14 @@
 // ============================
 // 1. MODULE IMPORTS
 // ============================
+
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import fs from "fs";
-import dotenv from "dotenv";
 
-// sadece .env dosyası varsa çalıştır
-if (fs.existsSync(".env")) {
-  dotenv.config();
+if (process.env.DATABASE_URL === undefined) {
+  console.log("DATABASE_URL not set. Are you running locally?");
 }
-
-console.log("Connected to DB via Render!");
-console.log("DB URL from env:", process.env.DATABASE_URL);
-
 
 // ============================
 // 2. DATABASE CONNECTION
