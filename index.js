@@ -7,6 +7,8 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 
+console.log("Connected to DB via Render!")
+
 // ============================
 // 2. DATABASE CONNECTION
 // ============================
