@@ -1,4 +1,6 @@
-/* === 1. General Body Styling === */
+/* =====================
+  1. GENERAL BODY STYLING
+===================== */
 body {
   background-image: url(../images/quiz2.jpg);
   background-repeat: no-repeat;
@@ -6,41 +8,32 @@ body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
   overflow: hidden;
-  
 }
 
-/* === 2. Main Container Styling === */
+/* =====================
+  2. MAIN CONTAINER (QUIZ CARD)
+===================== */
 .container {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   max-width: 50%;
-  height: 400px;
+  height: auto;
   margin: 10% auto;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding-top: 10px;
-  background-color: rgba(0, 0, 0, 0.65);
-  color: #e0e0e0;
-  border-radius: 16px;
-  padding: 2.5rem;
-  box-shadow: 0 0 24px rgba(0, 229, 255, 0.1);
-  backdrop-filter: blur(6px);
+  padding: 20px 45px 50px 30px;
   background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 16px;
-  padding: 2.5rem;
+  border-radius: 25px;
+  border: 2px solid #00f0ff;
+  color: white;
+  backdrop-filter: blur(8px);
   box-shadow:
     0 0 10px #00f0ff,
     0 0 20px #00f0ff,
     0 0 40px #00f0ff,
     0 0 80px #00f0ff20;
-  border: 2px solid #00f0ff;
-  backdrop-filter: blur(8px);
   transition: all 0.4s ease;
-  color: white;
 }
 
-/* === 2.a Container hover effect === */
 .container:hover {
   box-shadow:
     0 0 20px #00f0ff,
@@ -49,7 +42,9 @@ body {
     0 0 120px #00f0ff40;
 }
 
-/* === 3. Difficulty Dropdown Styling === */
+/* =====================
+  3. DROPDOWN SELECT (DIFFICULTY)
+===================== */
 #difficultySelect {
   padding: 10px;
   font-size: 1rem;
@@ -57,36 +52,44 @@ body {
   border: none;
   background-color: #0b132b;
   color: white;
-  margin-top: 15px;
+  margin-top: 25px;
   width: 100%;
-  max-width: 300px;
+  max-width: 100px;
   text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 60px;
+  box-shadow: 0 0 10px rgba(0,229,255,0.3);
 }
 
-/* === 4. Text Headings === */
+/* =====================
+  4. TEXT HEADINGS
+===================== */
 h1 {
   text-align: center;
+  font-size: 2.4rem;
+  margin-top: 2px;
+  margin-bottom: 20px;
 }
 
 h3 {
   margin: 0;
 }
 
-/* === 5. Answer Input Area === */
+/* =====================
+  5. INPUT FIELDS
+===================== */
 .answer-container {
   width: 100%;
   text-align: center;
 }
 
-#userInput {
+#userInput, #userInput2 {
   width: 100%;
-  max-width: 250px;
+  max-width: 215px;
   padding: 10px;
-  margin: 15px auto;
+  margin: 2px auto 40px auto;
   border-radius: 6px;
   border: 2px solid #00e5ff;
   background-color: transparent;
@@ -95,11 +98,15 @@ h3 {
   font-family: 'Poppins', sans-serif;
 }
 
-#userInput::placeholder {
+#userInput2 {
+  margin-bottom: 20px;
+}
+
+#userInput::placeholder, #userInput2::placeholder {
   color: #888;
 }
 
-#userInput:focus {
+#userInput:focus, #userInput2:focus {
   border-color: #1de9b6;
   box-shadow: 0 0 12px #1de9b6;
 }
@@ -119,7 +126,9 @@ h3 {
   box-shadow: 0 0 6px rgba(0, 229, 255, 0.3);
 }
 
-/* === 6. Buttons === */
+/* =====================
+  6. BUTTON STYLING
+===================== */
 button {
   background-color: #22cde0;
   color: #000;
@@ -140,18 +149,84 @@ button:hover {
   cursor: pointer;
 }
 
-/* === 7. Score Section === */
+.logout-btn {
+  margin-top: 30px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 6px;
+  box-shadow: 0 0 6px rgba(220, 20, 60, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logout-btn:hover {
+  background-color: darkred;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.7);
+  transform: scale(1.05);
+}
+
+/* =====================
+  7. SCORE DISPLAY (TOP SECTION)
+===================== */
 .horizontal-container {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
 }
 
-#result {
+.left-score,
+.right-score {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 0.95rem;
+}
+
+.score-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+
+.label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #ffffffcc;
+}
+
+.value {
+  font-weight: 400;
+  font-size: 1rem;
+  color: white;
+}
+
+/* =====================
+  8. FOOTER
+===================== */
+.footer {
   text-align: center;
-  font-size: 24px;
+  font-size: 0.9rem;
+  color: white;
+  opacity: 0.8;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* === 8. Correct / Incorrect Icons === */
+/* =====================
+  9. ANIMATIONS & EFFECTS
+===================== */
 .checkmark {
   color: transparent;
   animation: checkmark 0.5s ease;
@@ -172,8 +247,6 @@ button:hover {
   100% { color: red; }
 }
 
-/* === 9. Animations === */
-/* YOU LOST heading animation */
 .big-bounce {
   animation: popUp 0.6s ease-out forwards;
   font-size: 3rem;
@@ -196,7 +269,6 @@ button:hover {
   }
 }
 
-/* Slide-up animation for correct answer display */
 .slide-up {
   animation: slideUp 1s ease-out forwards;
   transform: translateY(20px);
@@ -210,7 +282,6 @@ button:hover {
   }
 }
 
-/* Shake animation for wrong answer */
 @keyframes shake {
   0% { transform: translate(1px, 1px); }
   20% { transform: translate(-1px, 0px); }
@@ -222,4 +293,59 @@ button:hover {
 
 .shake {
   animation: shake 0.3s linear 1;
+}
+
+/* =====================
+  10. MEDIA QUERIES
+===================== */
+@media (max-width: 480px) {
+  .horizontal-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
+  }
+
+  .left-score,
+  .right-score {
+    align-items: center;
+  }
+
+  .value {
+    margin-bottom: 4px;
+  }
+
+  .label[data-label="total"]::after {
+    content: "Score:";
+  }
+  .label[data-label="default"]::after {
+    content: "Total Score:";
+  }
+}
+
+@media (min-width: 481px) {
+  .label {
+    font-size: 1rem;
+  }
+
+  .value {
+    font-size: 1.1rem;
+  }
+
+  .score-line {
+    gap: 6px;
+  }
+
+  #userInput {
+    width: 70%;
+    max-width: 250px;
+    padding: 10px;
+    margin: 2px auto 40px auto;
+    border-radius: 6px;
+    border: 2px solid #00e5ff;
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+  }
 }
