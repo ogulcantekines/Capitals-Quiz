@@ -1,7 +1,6 @@
 // ============================
 // 1. MODULE IMPORTS
 // ============================
-
 import dotenv from "dotenv";
 dotenv.config();
 import express from "express";
@@ -155,20 +154,24 @@ app.post("/submit", async (req, res) => {
   if (currentQuestion.capital.toLowerCase() === answer.toLowerCase()) {
     totalCorrect++;
     isCorrect = true;
+
+    const result = await db.query("SELECT * FROM high_scores WHERE username = $1 AND difficulty = $2", [currentUser, currentDifficulty]);
+    const dbScore = result.rows[0]?.score || 0;
+
+    if (totalCorrect > dbScore) {
+      await db.query("UPDATE high_scores SET score = $1 WHERE username = $2 AND difficulty = $3", [totalCorrect, currentUser, currentDifficulty]);
+      currentHighScore = totalCorrect;
+    }
+
+    await nextQuestion(); // ✅ only question is changing
+    console.log(currentQuestion); // ✅ only log here
+  } 
+else {
+    console.log("❌ Wrong answer. No new question selected."); 
   }
-
-  const result = await db.query("SELECT * FROM high_scores WHERE username = $1 AND difficulty = $2", [currentUser, currentDifficulty]);
-  const dbScore = result.rows[0]?.score || 0;
-
-  if (totalCorrect > dbScore) {
-    await db.query("UPDATE high_scores SET score = $1 WHERE username = $2 AND difficulty = $3", [totalCorrect, currentUser, currentDifficulty]);
-    currentHighScore = totalCorrect;
-  }
-
-  await nextQuestion();
 
   res.render("index.ejs", {
-    question: currentQuestion,
+    question: currentQuestion, // if wrong it stays
     wasCorrect: isCorrect,
     totalScore: totalCorrect,
     highScore: currentHighScore,
@@ -177,7 +180,6 @@ app.post("/submit", async (req, res) => {
     currentDifficulty: currentDifficulty
   });
 
-  console.log(currentQuestion);
 });
 
 // ============================
