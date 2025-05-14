@@ -23,21 +23,31 @@
 
   <!-- 5. Quiz Form and Card Container -->
   <form class="container" id="quizForm" action="/submit" method="post">
-
+    
     <!-- 6. Player Info and Score Display -->
     <div class="horizontal-container">
-      <h3>
-        Total Score:
-        <span id="score">
-          <%= typeof totalScore !== 'undefined' ? totalScore : "0" %>
-        </span>
-        <h3>
-          Username: <%= username %><br>
-          High Score: <%= highScore %> <br>
-          Difficulty: <%= currentDifficulty %> <br>
-        </h3>
-      </h3>
+      <div class="left-score">
+        <div class="score-line">
+          <span class="label">Score:</span>
+          <span class="value"><%= typeof totalScore !== 'undefined' ? totalScore : "0" %></span>
+        </div>
+      </div>
+
+      <div class="right-score">
+      <div class="score-line">
+        <span class="label">Username:</span>
+        <span class="value"><%= username %></span>
+      </div>
+      <div class="score-line">
+        <span class="label">High Score:</span>
+        <span class="value"><%= highScore %></span>
+      </div>
+      <div class="score-line">
+        <span class="label">Difficulty:</span>
+        <span class="value"><%= currentDifficulty %></span>
+      </div>
     </div>
+  </div>
 
     <!-- 7. Question Heading (Country Name) -->
     <h1 id="countryName">
@@ -61,13 +71,16 @@
         <span class="cross" id="error">✖</span>
       <% } %>
     </button>
+ 
+    <!-- 11.Quit Button -->
+    <button type="button" class="logout-btn" onclick="window.location.href='/logout'">Quit</button>
+
   </form>
 
-  <!-- 11. Logout Button -->
-  <form action="/logout" method="get" style="position: absolute; top: 20px; right: 20px;">
-    <button type="submit" class="logout-btn">Logout</button>
-  </form>
-
+  <footer class="footer">
+  Made by Oğulcan Tekineş -2025-
+ </footer>
+ 
   <!-- 12. JavaScript: Answer Result Effects & Routing -->
   <script>
     window.onload = function () {

@@ -15,14 +15,14 @@
 
   <!-- 3. Login form: takes username and difficulty -->
   <form class="container" id="quizForm" action="/login" method="post">
-    <h2 style="text-align: center;">Enter your username to start the quiz:</h2>
+    <h2 style="text-align: center; margin-bottom: 40px;">Enter your username to start the quiz:</h2>
 
     <!-- 3.a Username input -->
-    <input type="text" name="username" id="userInput" placeholder="Your name" required>
+    <input type="text" name="username" id="userInput2" placeholder="Your name" required>
 
     <!-- 3.b Difficulty selector -->
     <select name="difficulty" id="difficultySelect" required>
-      <option value="">Choose Difficulty</option>
+      <option value="">Difficulty</option>
       <option value="easy">Easy</option>
       <option value="hard">Hard</option>
     </select>
@@ -30,6 +30,11 @@
     <!-- 3.c Submit button -->
     <button type="submit">Start</button>
   </form>
+
+  <footer class="footer">
+  Made by Oğulcan Tekineş -2025-
+ </footer>
+
 
   <!-- 4. Back navigation prevention: force logout if coming back from history -->
   <script>
